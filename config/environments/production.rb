@@ -78,5 +78,5 @@ Ribbot::Application.configure do
     :sender_address => %{"Exception Notifier" <contact@ifiwerepresident.com>},
     :exception_recipients => %w{akshat@spoutlets.com}
 
-  config.action_controller.asset_host = "ribbot.com"
+  #config.action_controller.asset_host = "ribbot.com"
 end
