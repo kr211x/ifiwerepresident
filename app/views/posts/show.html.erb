@@ -4,7 +4,7 @@
   <% else %>
     <h2><%= @post.title %></h2>
   <% end %>
-  
+
   <%= render :partial => 'shared/byline', :locals => {:comment_or_post => @post, :voting => true, :show_tags => true} %>
   <%= @post.html.html_safe if @post.html.present? %>
   <p>
@@ -19,17 +19,19 @@
 
 <hr/>
 
-<div class="pull-right">
-  <%= render 'shared/ads' %>
+<div class="row">
+  <div class="span6">
+    <%= render "comments/form" %>
+
+    <%= render @comments %>
+
+    <div id="reply_comment" style="display: none;">
+      <%= render :partial => "comments/form", :locals => {:reply_comment => true} %>
+    </div>
+
+
+    <%= paginate @comments %>
+  </div>
+  <div class="span6">
+  </div>
 </div>
-
-<%= render "comments/form" %>
-
-<%= render @comments %>
-
-<div id="reply_comment" style="display: none;">
-  <%= render :partial => "comments/form", :locals => {:reply_comment => true} %>
-</div>
-
-
-<%= paginate @comments %>

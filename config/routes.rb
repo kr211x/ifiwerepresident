@@ -1,7 +1,10 @@
 Ribbot::Application.routes.draw do
 
+
+
   resources :posts do
     resources :comments
+    resources :contras
   end
   resources :forums
   resources :votes
@@ -22,7 +25,7 @@ Ribbot::Application.routes.draw do
   end
   resources :themes
   resources :pages
-  
+
   namespace :account do
     resources :comments
     resources :posts
@@ -42,11 +45,11 @@ Ribbot::Application.routes.draw do
     resource :ownership
     resource :domain
   end
-  
+
   namespace :superuser do
     resources :forums
   end
-  
+
   resources :verifications
   resources :password_resets
   resources :sessions
@@ -55,13 +58,13 @@ Ribbot::Application.routes.draw do
   match 'signout' => "sessions#destroy", :via => :delete
   match 'features' => 'static#features'
   match 'pricing' => 'static#pricing'
-  
+
   constraints(Subdomain) do
-    match '/' => 'posts#index'  
+    match '/' => 'posts#index'
   end
-  
+
   root :to => 'users#new'
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

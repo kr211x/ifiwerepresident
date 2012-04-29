@@ -1,0 +1,2 @@
+module ContrasHelper
+end
