@@ -1,3 +1,3 @@
 ActionMailer::Base.add_delivery_method :ses, AWS::SES::Base,
-  :access_key_id     => '1CX0HD2EBT0RPT8CT0G2',
-  :secret_access_key => 'W8Jp66GYbaELOB6B6gSf/13Tbt1DuQmuwluhIPIy'
+  :access_key_id     => 'AKIAIEG7X6JIVLEIZFPA',
+  :secret_access_key => 'AjJ1E+etehxbCdSfKJkNG2c9z9xdQmMU8OihEUxbpEdY'
