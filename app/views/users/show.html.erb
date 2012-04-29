@@ -1,0 +1,36 @@
+<table class="table table-plain">
+  <tr>
+    <td></td>
+    <td><h2><%= @user.name %></h2></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><strong>Signed Up</strong></td>
+    <td><%= time_ago_in_words @user.created_at %> ago</td>
+    <td rowspan='10'><%= image_tag @user.gravatar_url(:size => 200) %></td>
+  </tr>
+  <tr>
+    <td><strong>Location</strong></td>
+    <td><%= @user.location %></td>
+  </tr>
+  <tr>
+    <td><strong>Website</strong></td>
+    <td><%= link_to @user.website, @user.website, :rel => "nofollow" if @user.website.present? %></td>
+  </tr>
+  <tr>
+    <td><strong>About</strong></td>
+    <td><%= simple_format @user.about %></td>
+  </tr>
+  <tr>
+    <td><strong>Forums Created</strong></td>
+    <td>
+      <% if @forums.present? %>
+        <% @forums.each do |f| %>
+          <p><%= link_to f.name, root_url(:subdomain => f.subdomain) %>
+        <% end %>
+      <% else %>
+        None yet.
+      <% end %>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,12 @@
+<% if current_forum.tags.present? %>
+  <h6>Filter By Tags</h6>
+  
+  <% current_names = params[:tags].split(',') rescue [] %>
+  <% current_forum.tags.each do |t| %>
+    <% if current_names.include?(t.name) %>
+      <%= tag_link t, true %>
+    <% else %>
+      <%= tag_link t %>
+    <% end %>
+  <% end %>
+<% end %>
