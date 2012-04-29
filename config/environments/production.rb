@@ -59,8 +59,8 @@ Ribbot::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => "ribbot.com" }
-  
+  config.action_mailer.default_url_options = { :host => "ifiwerepresident.com" }
+
   # ActionMailer::Base.smtp_settings = {
   #   :address        => 'smtp.sendgrid.net',
   #   :port           => '587',
@@ -70,13 +70,13 @@ Ribbot::Application.configure do
   #   :domain         => 'heroku.com'
   # }
   # ActionMailer::Base.delivery_method = :smtp
-  
+
   config.action_mailer.delivery_method = :ses
-  
+
   config.middleware.use ExceptionNotifier,
     :email_prefix => "[Exception] ",
-    :sender_address => %{"Exception Notifier" <contact@ribbot.com>},
-    :exception_recipients => %w{barmstrong@gmail.com}
-    
+    :sender_address => %{"Exception Notifier" <contact@ifiwerepresident.com>},
+    :exception_recipients => %w{akshat@spoutlets.com}
+
   config.action_controller.asset_host = "ribbot.com"
 end
