@@ -91,11 +91,11 @@ class User
   end
 
   def up_voted? voteable
-    self.vote_value(voteable) == :up
+    #self.vote_value(voteable) == :up
   end
 
   def down_voted? voteable
-    self.vote_value(voteable) == :down
+    #self.vote_value(voteable) == :down
   end
 
   # checks AND updates rate limit

@@ -1,14 +1,14 @@
 <% reply_comment ||= false %>
 
-<%= form_for [@post,@comment], :remote => reply_comment, :html => {:class => "comment-form"} do |f| %>
+<%= form_for @comment, :url => proposal_comments_path(@issue, @proposal), :remote => reply_comment, :html => {:class => "comment-form"} do |f| %>
   <%= f.hidden_field :parent_id %>
 
-  <%= render 'shared/error_messages', :target => @post %>
+  <%= render 'shared/error_messages', :target => @proposal %>
   <%= render 'shared/error_messages', :target => @comment %>
 
   <p><%= f.text_area :text, :class => "span6" %></p>
   <p>
-    <% button_text = @comment.new_record? ? current_forum.new_comment_label : 'Save Changes' %>
+    <% button_text = @comment.new_record? ? 'Submit' : 'Save Changes' %>
     <%= submit_tag button_text, :class => "btn btn-primary", :disable_with => button_text, :disabled => !signed_in? %>
 
     <% if reply_comment %>
