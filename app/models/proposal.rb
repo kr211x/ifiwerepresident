@@ -1,6 +1,6 @@
 require 'uri'
 
-class Post
+class Proposal 
   include Mongoid::Document
   include Mongoid::Timestamps
   include Sunspot::Mongoid
@@ -19,7 +19,7 @@ class Post
   index :'votes.point'
 
   belongs_to :user, index: true
-  belongs_to :forum, index: true
+  belongs_to :issue, index: true
   has_many :comments, dependent: :destroy
   has_and_belongs_to_many :tags, inverse_of: nil, index: true
 
@@ -43,7 +43,7 @@ class Post
     text :comments_texts do
       comments.collect {|c| c.text }
     end
-    string :forum_id, :references => Forum
+    string :issue_id, :references => Issue
     string :tag_ids, :multiple => true
   end
   

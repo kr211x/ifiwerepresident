@@ -1,0 +1,18 @@
+<%= form_for @issue, :html => {:class => "form-stacked"} do |f| %>
+  <p><h2>Create A Forum</h2></p>
+  <% if @issue.errors.any? %>
+    <div class="error_messages">
+      <ul>
+        <% for message in @issue.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <p>Note: names can be changed later or used on a custom domain</p>
+
+  <fieldset>
+    <%= submit_tag "Create Issue", :class => "btn btn-primary btn-large", :disable_with => "Creating..." %>
+  </fieldset>
+<% end %>
