@@ -1,8 +1,8 @@
 <div class="row">
   <div class="span9">
 
-    <%= link_to current_forum.new_post_label, new_post_path, :class => "btn btn-primary leading" %>
-    <%= form_tag posts_path, :method => :get, :class => 'form-inline pull-right' do %>
+    <%= link_to 'New proposal', new_proposal_path, :class => "btn btn-primary leading" %>
+    <%= form_tag proposals_path, :method => :get, :class => 'form-inline pull-right' do %>
       <%= text_field_tag :search, params[:search] %>
       <%= submit_tag "Search", :class => "btn", :disable_with => "Search" %>
       <% if params[:search].present? %>
@@ -10,15 +10,15 @@
       <% end %>
     <% end %>
 
-    <% if @posts.empty? and current_forum.posts.empty? %>
+    <% if @proposals.empty? and @issue.proposals.empty? %>
       <div class="alert-message block-message success">
         <p><strong>Welcome! This is a brand new forum</strong></p>
-        <p>To get started try adding the first <%= current_forum.post_label.downcase %>.</p>
+        <p>To get started try adding the first proposal.</p>
         <div class="alert-actions">
-          <%= link_to current_forum.new_post_label, new_post_path, :class => "btn" %>
+          <%= link_to 'New Proposal', new_proposal_path, :class => "btn" %>
         </div>
       </div>
-    <% elsif @posts.empty? %>
+    <% elsif @proposals.empty? %>
       <div class="alert-message block-message info no-results">
         <p><strong>Your search didn't return an results!</strong></p>
         <p>Please try a new search or <%= link_to 'go back', root_path %>.</p>
@@ -27,20 +27,20 @@
 
     <% if params[:search].present? %>
       <table class="table table-striped">
-        <%= render @posts.results %>
+        <%= render @proposals.results %>
       </table>
     <% else %>
       <ul class="nav nav-tabs">
-        <li class="<%= 'active' if params[:sort].blank? %>"><%= link_to 'Popular', posts_path(request.query_parameters.merge(:sort => nil)) %></li>
-        <li class="<%= 'active' if params[:sort] == 'top' %>"><%= link_to 'Top', posts_path(request.query_parameters.merge(:sort => 'top')) %></li>
-        <li class="<%= 'active' if params[:sort] == 'latest' %>"><%= link_to 'Latest', posts_path(request.query_parameters.merge(:sort => 'latest')) %></li>
+        <li class="<%= 'active' if params[:sort].blank? %>"><%= link_to 'Popular', proposals_path(request.query_parameters.merge(:sort => nil)) %></li>
+        <li class="<%= 'active' if params[:sort] == 'top' %>"><%= link_to 'Top', proposals_path(request.query_parameters.merge(:sort => 'top')) %></li>
+        <li class="<%= 'active' if params[:sort] == 'latest' %>"><%= link_to 'Latest', proposals_path(request.query_parameters.merge(:sort => 'latest')) %></li>
       </ul>
       <table class="table table-striped">
-        <%= render @posts %>
+        <%- # render partial for proposals %>
       </table>
     <% end %>
 
-      <%= paginate @posts %>
+      <%= paginate @proposals %>
     <% end %>
   </div>
   <div class="span3" style="padding-top: 68px;">

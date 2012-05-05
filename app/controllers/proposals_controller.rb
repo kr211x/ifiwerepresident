@@ -2,17 +2,16 @@ class ProposalsController < ApplicationController
   before_filter :authenticate_user!, :except => [:show, :index]
   
   def new
-    @proposal = Proposal.new
+    @proposal = Proposal.new(params[:proposal])
   end
   
   def create
     @issue = Issue.find(params[:issue_id])
-    @proposal.user = current_user
-    @proposal = Proposal.new(:issue_id => @issue)
+    @proposal = Proposal.new(:issue => @issue, :user => current_user)
     if @proposal.save
       current_user.vote(@proposal, :up)
       @proposal.update_ranking
-      redirect_to @proposal, :notice => "#{current_issue.proposal_label} created!"
+      redirect_to proposal_path(@issue, @proposal), :notice => "Proposal created!"
     else
       render :new
     end
@@ -27,7 +26,7 @@ class ProposalsController < ApplicationController
         paginate :page => params[:page]
       end
     else
-      @proposals = @issue.proposals.with_tags(params[:tags], current_issue).where(:'votes.point'.gt => -5).page(params[:page])
+      @proposals = @issue.proposals.with_tags(params[:tags], @issue).where(:'votes.point'.gt => -5).page(params[:page])
       
       if params[:sort] == 'top'
         @proposals = @proposals.desc('votes.point')
@@ -41,7 +40,7 @@ class ProposalsController < ApplicationController
   
   def show
     @issue = Issue.find(params[:issue_id])
-    @proposal = @issue.proposals.where(:_id =>params[:id]).first
+    @proposals = @issue.proposals.where(:_id =>params[:id]).first
     if @proposal.nil?
       redirect_to root_path, :notice => "That proposal is no longer available."
       return
