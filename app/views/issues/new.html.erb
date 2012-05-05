@@ -11,6 +11,13 @@
   <% end %>
 
   <p>Note: names can be changed later or used on a custom domain</p>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title, :class => "span8" %>
+    <%= f.label :description %>
+    <%= f.text_area :description, :class => "span8" %>
+  </p>
+
 
   <fieldset>
     <%= submit_tag "Create Issue", :class => "btn btn-primary btn-large", :disable_with => "Creating..." %>
