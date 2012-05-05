@@ -1,3 +1,3 @@
-class Contra
+class Procon
   include Mongoid::Document
 end

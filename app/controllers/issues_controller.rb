@@ -1,5 +1,4 @@
 class IssuesController < ApplicationController
-  before_filter :require_current_issue!, :only => :show
   before_filter :authenticate_user!, :except => :show
   
   def new
@@ -18,6 +17,10 @@ class IssuesController < ApplicationController
     else
       render :new
     end
+  end
+  
+  def show
+    @issue = Issue.find(params[:id])
   end
   
   def destroy
