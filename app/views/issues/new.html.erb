@@ -1,5 +1,5 @@
 <%= form_for @issue, :html => {:class => "form-stacked"} do |f| %>
-  <p><h2>Create A Forum</h2></p>
+  <p><h2>Create A Issue</h2></p>
   <% if @issue.errors.any? %>
     <div class="error_messages">
       <ul>
@@ -9,7 +9,7 @@
       </ul>
     </div>
   <% end %>
-  
+
   <p>Note: names can be changed later or used on a custom domain</p>
 
   <fieldset>

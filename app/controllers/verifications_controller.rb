@@ -6,11 +6,11 @@ class VerificationsController < ApplicationController
       redirect_to signin_path, :notice => "Please sign in first."
       return
     end
-    current_user.send_verification_email(current_forum)
+    current_user.send_verification_email()
   end
 
   def create
-    current_user.send_verification_email(current_forum)
+    current_user.send_verification_email()
     redirect_to verifications_path, :notice => "Verification email sent!"
   end
 
@@ -20,11 +20,8 @@ class VerificationsController < ApplicationController
         user.verified_at = Time.zone.now
         user.save!
       end
-      path = forums_path
-      if current_forum
-        path = root_url(:subdomain => current_forum.subdomain)
-      end
-      redirect_to path, :notice => "Your account has been verified!"    
+      path = issue_path
+      redirect_to path, :notice => "Your account has been verified!"
     else
       redirect_to verifications_path, :notice => "Couldn't find that verification code.  Please resend a new one."
     end
