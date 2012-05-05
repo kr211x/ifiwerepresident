@@ -10,7 +10,7 @@
       <% f = p.issue %>
       <% next if f.nil? %>
       <tr>
-        <td><h3><%= link_to f.name, issue_path(f) %></h3></td>
+        <td><h3><%= link_to f.title, issue_path(f) %></h3></td>
         <td><p></p><%= p.level_in_words %></td>
         <td>
           <% if p.level == Participation::MEMBER %>
