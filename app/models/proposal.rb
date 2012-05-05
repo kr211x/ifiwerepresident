@@ -14,6 +14,7 @@ class Proposal
   field :html, type: String
   field :ranking, type: Float, default: 0.0
   field :comment_count, type: Integer, default: 0
+  field :description, type: String
   
   index :ranking
   index :'votes.point'
@@ -23,11 +24,8 @@ class Proposal
   has_many :comments, dependent: :destroy
   has_and_belongs_to_many :tags, inverse_of: nil, index: true
 
-  validates_presence_of :title, :user, :forum
-  validate :user_is_not_banned
-  validate :url_is_new
-  validate :presence_of_url_or_text
-  validate :format_of_url
+  validates_presence_of :description, :user
+  #validate :user_is_not_banned
   
   voteable self, :up => +1, :down => -1
   
@@ -48,32 +46,11 @@ class Proposal
   end
   
   def create_participation
-    forum.add_member(user)
+    issue.add_member(user)
   end
   
   def user_is_not_banned
-    errors.add(:base, "You can no longer participate in this forum") if user.banned_from?(forum)
-  end
-  
-  def url_is_new
-    if self.url.present?
-      self.url = self.url.downcase
-      if post = forum.posts.where(:url => self.url, :created_at.gt => 2.months.ago).first
-        errors.add(:base, "That URL has already been submitted") unless post == self
-      end
-    end
-  end
-  
-  def presence_of_url_or_text
-    if self.url.blank? and self.text.blank?
-      errors.add(:base, "Post can't be blank")
-    end
-  end
-  
-  def format_of_url
-    if self.url.present?
-      errors.add(:base, "Invalid URL") unless self.url =~ URI::regexp
-    end
+    errors.add(:base, "You can no longer participate in this issue") if user.banned_from?(issue)
   end
   
   def update_post_counts
@@ -84,12 +61,12 @@ class Proposal
     end
   end
   
-  def self.with_tags names, forum
+  def self.with_tags names, issue
     if names.blank?
       scoped
     else
       names = names.split(',')
-      tags = forum.tags.all_in(:name => names)
+      tags = issue.tags.all_in(:name => names)
       all_in(:tag_ids => tags.collect{|t| t.id})
     end
   end

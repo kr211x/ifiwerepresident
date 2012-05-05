@@ -1,10 +1,13 @@
 Ribbot::Application.routes.draw do
-
-  resources :proposals do
-    resources :comments
-    resources :contras
+  
+  scope '/issues/:issue_id/' do
+    resources :proposals do
+      resources :comments
+      resources :contras
+    end
   end
-  resources :issues
+  resources :issues 
+  
   resources :proposals
   resources :votes
   resources :users do
