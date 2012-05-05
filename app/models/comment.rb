@@ -14,10 +14,10 @@ class Comment
   index :'votes.point'
 
   belongs_to :user, index: true
-  belongs_to :post, index: true
-  belongs_to :forum, index: true
+  belongs_to :proposal, index: true
+  belongs_to :issue, index: true
   
-  validates_presence_of :text, :user, :post, :forum
+  validates_presence_of :text, :user, :proposal, :forum
   validate :user_is_not_banned
   
   voteable self, :up => +1, :down => -1
@@ -34,11 +34,11 @@ class Comment
   end
   
   def inc_comment_count
-    post.inc(:comment_count, 1)
+    proposal.inc(:comment_count, 1)
   end
   
   def dec_comment_count
-    post.inc(:comment_count, -1)
+    proposal.inc(:comment_count, -1)
   end
   
   def user_is_not_banned

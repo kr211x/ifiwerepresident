@@ -1,35 +1,35 @@
 <%
-  show_post_link     = false if local_assigns[:show_post_link].nil?
+  show_proposal_link     = false if local_assigns[:show_proposal_link].nil?
   voting             = false if local_assigns[:voting].nil?
   show_tags          = false if local_assigns[:show_tags].nil?
   show_comments_link = false if local_assigns[:show_comments_link].nil?
 %>
 
 <p class="byline">
-  <%= render :partial => 'votes/vote', :locals => {:voteable => comment_or_post} if voting %>
+  <%= render :partial => 'votes/vote', :locals => {:voteable => comment_or_proposal} if voting %>
   
-  <span class='points'><%= comment_or_post.votes_point %></span> point<%= 's' unless comment_or_post.votes_point == 1 %>
+  <span class='points'><%= comment_or_proposal.votes_point %></span> point<%= 's' unless comment_or_proposal.votes_point == 1 %>
   
-  by <%= link_to image_tag(comment_or_post.user.gravatar_url), comment_or_post.user %> 
+  by <%= link_to image_tag(comment_or_proposal.user.gravatar_url), comment_or_proposal.user %> 
   
-  <%= link_to comment_or_post.user.name, comment_or_post.user, :class => "user-link" %> <%= time_ago_in_words comment_or_post.created_at %> ago
+  <%= link_to comment_or_proposal.user.name, comment_or_proposal.user, :class => "user-link" %> <%= time_ago_in_words comment_or_proposal.created_at %> ago
   
-  <% if show_post_link %>
-    <% if comment_or_post.is_a?(Comment) %>
-      on <%= link_to comment_or_post.post.title, comment_or_post.post %>
-    <% elsif comment_or_post.is_a?(Post) %>
-    on <%= link_to comment_or_post.title, comment_or_post %>
+  <% if show_proposal_link %>
+    <% if comment_or_proposal.is_a?(Comment) %>
+      on <%= link_to comment_or_proposal.proposal.title, comment_or_proposal.proposal %>
+    <% elsif comment_or_proposal.is_a?(proposal) %>
+    on <%= link_to comment_or_proposal.title, comment_or_proposal %>
     <% end %>
   <% end %>
   
-  <%= comment_or_post.ranking.round(6) if params[:ranking].present? %>
+  <%= comment_or_proposal.ranking.round(6) if params[:ranking].present? %>
   
-  <% if show_comments_link and comment_or_post.is_a?(Post) %>
-    with <%= link_to pluralize(comment_or_post.comment_count, 'comment'), post_path(comment_or_post) %>
+  <% if show_comments_link #and comment_or_proposal.is_a?(proposal) %>
+    with <%= link_to pluralize(comment_or_proposal.comment_count, 'comment'), proposal_path(prop) %>
   <% end %>
   
-  <% if show_tags and comment_or_post.is_a?(Post) %>
-    <% comment_or_post.tags.each do |t| %>
+  <% if show_tags and comment_or_proposal.is_a?(proposal) %>
+    <% comment_or_proposal.tags.each do |t| %>
       <%= link_to t.name, root_path(:tags => t.name), :class => "tag" %>
     <% end %>
   <% end %>

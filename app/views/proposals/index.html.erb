@@ -35,10 +35,8 @@
         <li class="<%= 'active' if params[:sort] == 'top' %>"><%= link_to 'Top', proposals_path(request.query_parameters.merge(:sort => 'top')) %></li>
         <li class="<%= 'active' if params[:sort] == 'latest' %>"><%= link_to 'Latest', proposals_path(request.query_parameters.merge(:sort => 'latest')) %></li>
       </ul>
-      <table class="table table-striped">
-        <% @proposals.each do |prop| %>
-          <%= prop.description %>
-        <% end %>
+      <table class="table table-striped">        
+        <%= render 'proposal' %>
       </table>
     <% end %>
 
