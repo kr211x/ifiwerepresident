@@ -16,3 +16,16 @@ rerun.txt
 pickle-email-*.html
 /solr/data
 /solr/pids
+
+# OS or Editor folders
+.DS_Store
+._*
+Thumbs.db
+.cache
+.project
+.settings
+.tmproj
+*.esproj
+nbproject
+*.sublime-project
+*.sublime-workspace

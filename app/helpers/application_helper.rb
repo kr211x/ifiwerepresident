@@ -13,15 +13,10 @@ module ApplicationHelper
     when :alert then 'error'
     end
   end
-  
-  def site_name
-    current_forum.present? ? current_forum.name : "Ribbot"
-  end
-  
+    
   def title
     return @title if @title.present?
     return @post.title if @post.present?
-    site_name
   end
   
   def meta_description

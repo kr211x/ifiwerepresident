@@ -1,19 +1,18 @@
 Ribbot::Application.routes.draw do
 
-
-
-  resources :posts do
+  resources :proposals do
     resources :comments
     resources :contras
   end
-  resources :forums
+  resources :issues
+  resources :proposals
   resources :votes
   resources :users do
     member do
       put :password_reset
     end
     collection do
-      post :create_with_forum
+      post :create_with_issue
     end
   end
   resources :participations do
@@ -47,7 +46,7 @@ Ribbot::Application.routes.draw do
   end
 
   namespace :superuser do
-    resources :forums
+    resources :issues
   end
 
   resources :verifications

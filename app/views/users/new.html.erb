@@ -3,18 +3,18 @@
     <div class="span7">
       <h1>Simple, Beautiful Discussion Forums</h1>
       <p><h2>For customer support, news aggregation, question/answer sites, and online communities.</h2></p>
-      <p>For a demo check out our <%= link_to 'support forum', root_url(:subdomain => 'support') %>.</p>
+      <p>For a demo check out our <%= link_to 'support issue', root_url(:subdomain => 'support') %>.</p>
     </div>
     
     <div class="span3">
-      <%= form_for @user, :url => create_with_forum_users_path, :html => {:class => "form-stacked"} do |f| %>
-        <% if @user.errors.any? or @forum.errors.any? %>
+      <%= form_for @user, :url => create_with_issue_users_path, :html => {:class => "form-stacked"} do |f| %>
+        <% if @user.errors.any? or @issue.errors.any? %>
           <div class="error_messages">
             <ul>
               <% for message in @user.errors.full_messages.reject{|msg| msg =~ /digest/} %>
                 <li><%= message %></li>
               <% end %>
-              <% for message in @forum.errors.full_messages %>
+              <% for message in @issue.errors.full_messages %>
                 <li><%= message %></li>
               <% end %>
             </ul>

@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, :only => :password_reset
-  before_filter :require_current_forum!, :only => :show
+  before_filter :require_current_issue!, :only => :show
   
   def new
-    @title = "Create a Forum"
+    @title = "Create a Issue"
     @user = User.new
-    @forum = Forum.new
+    @issue = Issue.new
   end
 
   def create
@@ -18,15 +18,15 @@ class UsersController < ApplicationController
     end
   end
   
-  def create_with_forum
+  def create_with_issue
     @user = User.new(params[:user])
     @user.password = params[:user][:password]
-    @forum = Forum.new(:subdomain => params[:subdomain])
+    @issue = Issue.new(:subdomain => params[:subdomain])
     
-    if @user.valid? and @forum.valid?
+    if @user.valid? and @issue.valid?
       @user.save!
-      @forum.save!
-      @forum.add_owner(@user)
+      @issue.save!
+      @issue.add_owner(@user)
       signin! @user, "Thanks for creating an account!"
     else
       try_login or render :new
@@ -35,9 +35,9 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    raise CanCan::AccessDenied.new("Not authorized!", :view, User) unless @user.member_of?(current_forum)
+    raise CanCan::AccessDenied.new("Not authorized!", :view, User) unless @user.member_of?(current_issue)
     participations = @user.participations.owner
-    @forums = Forum.where(:_id.in => participations.collect{|p| p.forum_id}).asc(:name)
+    @issues = Issue.where(:_id.in => participations.collect{|p| p.issue_id}).asc(:name)
   end
   
   def password_reset
