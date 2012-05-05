@@ -1,0 +1,23 @@
+<% @proposals.each do |prop| %>
+  <%
+    voting = true if local_assigns[:voting].nil?
+  %>
+
+  <tr class="post">
+    <% if voting %>
+      <td>
+        <%= render :partial => 'votes/vote', :locals => {:voteable => prop} %>
+      </td>
+    <% end %>
+    
+    <td class="description">
+      <div class="pull-right">
+        <% prop.tags.each do |t| %>
+          <%= tag_link t %>
+        <% end %>
+      </div>
+        <%= link_to prop.title, proposal_path(@issue, prop), :rel => 'nofollow', :class => 'post-link' %>
+      <%- # render :partial => 'shared/byline', :locals => {:comment_or_proposal => prop, :show_comments_link => true, :prop => prop} %>
+    </td>
+  </tr>
+<% end %>
