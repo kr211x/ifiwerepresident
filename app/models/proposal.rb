@@ -24,8 +24,7 @@ class Proposal
   has_many :comments, dependent: :destroy
   has_and_belongs_to_many :tags, inverse_of: nil, index: true
 
-  validates_presence_of :description, :user
-  #validate :user_is_not_banned
+  validates_presence_of :description
   
   voteable self, :up => +1, :down => -1
   
@@ -46,7 +45,8 @@ class Proposal
   end
   
   def create_participation
-    issue.add_member(user)
+    @issue = self.issue
+    @issue.add_member(user)
   end
   
   def user_is_not_banned

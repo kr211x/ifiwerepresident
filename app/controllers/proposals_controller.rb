@@ -7,8 +7,10 @@ class ProposalsController < ApplicationController
   
   def create
     @issue = Issue.find(params[:issue_id])
-    @proposal = Proposal.new(:issue => @issue, :user => current_user)
-    if @proposal.save
+    @proposal = Proposal.new(params[:proposal])
+    @proposal.issue = @issue
+    @proposal.user = current_user
+    if @proposal.save      
       current_user.vote(@proposal, :up)
       @proposal.update_ranking
       redirect_to proposal_path(@issue, @proposal), :notice => "Proposal created!"
