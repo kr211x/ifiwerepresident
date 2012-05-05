@@ -1,11 +1,9 @@
 <div class="hero-unit home">
   <div class="row">
     <div class="span7">
-      <h1>Simple, Beautiful Discussion Forums</h1>
-      <p><h2>For customer support, news aggregation, question/answer sites, and online communities.</h2></p>
-      <p>For a demo check out our <%= link_to 'support issue', root_url(:subdomain => 'support') %>.</p>
+      <h1>Create policies to change the world</h1>
     </div>
-    
+
     <div class="span3">
       <%= form_for @user, :url => create_with_issue_users_path, :html => {:class => "form-stacked"} do |f| %>
         <% if @user.errors.any? or @issue.errors.any? %>
@@ -20,24 +18,6 @@
             </ul>
           </div>
         <% end %>
-        <p>
-          <%= f.label :email, 'Enter Your Email' %>
-          <%= f.text_field :email %>
-        </p>
-        
-        <p>
-          <%= f.label :password, 'Choose A Password' %>
-          <%= f.password_field :password %>
-        </p>
-        
-        <p>
-          <%= label_tag :subdomain, 'Name Your Forum' %>
-          <span style="font-size: 80%;">http://<%= text_field_tag :subdomain, nil, :style => "width: 80px;" %>.ribbot.com</span>
-        </p>
-
-        <fieldset>
-          <%= submit_tag "Get Started &raquo;".html_safe, :class => "btn btn-primary btn-large", :disable_with => "Starting..." %>
-        </fieldset>
       <% end %>
     </div>
   </div>
