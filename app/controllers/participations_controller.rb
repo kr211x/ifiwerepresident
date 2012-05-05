@@ -17,6 +17,6 @@ class ParticipationsController < ApplicationController
       p 2
       @participation.update_attribute :hidden, true
     end
-    redirect_to forums_path
+    redirect_to issues_path
   end
 end

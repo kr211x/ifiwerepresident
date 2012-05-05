@@ -9,18 +9,18 @@ class Ability
       can :manage, :all
     end
 
-    can :manage, Forum do |f|
+    can :manage, Issue do |f|
       user.admin_of?(f)
     end
-    cannot :destroy, Forum do |f|
+    cannot :destroy, Issue do |f|
       user.admin_of?(f)
     end
-    can :destroy, Forum do |f|
+    can :destroy, Issue do |f|
       user.owner_of?(f)
     end
     
     can :manage, User, :_id => user.id
-    can :manage, [Comment, Participation, Post, Theme], :user_id => user.id
+    can :manage, [Comment, Participation, Proposal, Theme], :user_id => user.id
     can [:show, :install, :uninstall], Theme, :public => true
     
     # Admin actions

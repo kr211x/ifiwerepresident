@@ -10,10 +10,10 @@ class Participation
   field :banned, type: Boolean, default: false
   field :hidden, type: Boolean, default: false
   
-  belongs_to :forum, index: true
+  belongs_to :issue, index: true
   belongs_to :user, index: true
     
-  validates_presence_of :level, :forum, :user
+  validates_presence_of :level, :issue, :user
   
   scope :owner, where(:level => OWNER)
   scope :admin, where(:level => ADMIN)
