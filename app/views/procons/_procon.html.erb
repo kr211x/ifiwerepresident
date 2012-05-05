@@ -1,0 +1,30 @@
+<%
+  indent            = true  if local_assigns[:indent].nil?
+  show_proposal_link    = false if local_assigns[:show_proposal_link].nil?
+  show_links        = true  if local_assigns[:show_links].nil?
+  voting            = true  if local_assigns[:voting].nil?
+%>
+
+<div class="procon">
+  <div class="show">
+    <%- # render :partial => 'shared/byline', :locals => {:procon_or_proposal => procon, :show_proposal_link => show_proposal_link, :voting => voting} %>
+  
+    <% if procon.deleted %>
+      <p><small>[deleted]</small></p>
+    <% else %>
+      <%= procon.html.html_safe %>
+  
+      <% if show_links %>
+        <p>
+          <%= link_to 'reply', '#', :class => "reply-link" %>
+          <% if can? :edit, procon %>
+            <%= link_to 'edit', edit_proposal_procon_path(@proposal, procon) %>
+          <% end %>
+          <% if can? :destroy, procon %>
+            <%= link_to 'delete', proposal_procon_path(@proposal, procon), :method => :delete, :confirm => "Are you sure you want to delete?" %>
+          <% end %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

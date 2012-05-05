@@ -2,8 +2,7 @@ Ribbot::Application.routes.draw do
   
   scope '/issues/:issue_id/' do
     resources :proposals do
-      resources :comments
-      resources :contras
+      resources :procons
     end
   end
   resources :issues 

@@ -53,41 +53,42 @@ class User
     val.blank? ? "New User" : val
   end
 
-  def forums
-    Forum.any_in(:_id => participations.collect{|p| p.forum_id})
+  def issues
+    issue.any_in(:_id => participations.collect{|p| p.issue_id})
   end
 
-  def member_of? forum
-    Participation.exists?(:conditions => {:forum_id => forum.id, :user_id => self.id})
+  def member_of? issue
+    Participation.exists?(:conditions => {:issue_id => @issue.id, :user_id => self.id})
   end
 
-  def admin_of? forum
-    Participation.exists?(:conditions => {:forum_id => forum.id, :user_id => self.id, :level.lte => Participation::ADMIN})
+  def admin_of? issue
+    issues = Issue.where(:user => self)
+    #Participation.exists?(:conditions => {:issue_id => issue.id, :user_id => self.id, :level.lte => Participation::ADMIN})
   end
 
-  def owner_of? forum
-    Participation.exists?(:conditions => {:forum_id => forum.id, :user_id => self.id, :level.lte => Participation::OWNER})
+  def owner_of? issue
+    Participation.exists?(:conditions => {:issue_id => issue.id, :user_id => self.id, :level.lte => Participation::OWNER})
   end
 
-  def banned_from? forum
-    Participation.exists?(:conditions => {:forum_id => forum.id, :user_id => self.id, :banned => true})
+  def banned_from? issue
+    Participation.exists?(:conditions => {:issue_id => issue.id, :user_id => self.id, :banned => true})
   end
 
-  def send_password_reset forum=nil
+  def send_password_reset issue=nil
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
     save!
-    Mailer.password_reset(self, forum).deliver
+    Mailer.password_reset(self, issue).deliver
   end
 
   def verified?
     verified_at.present?
   end
 
-  def send_verification_email forum=nil
+  def send_verification_email issue=nil
     generate_token(:verification_token) if verification_token.nil?
     save!
-    Mailer.email_verification(self, forum).deliver
+    Mailer.email_verification(self, issue).deliver
   end
 
   def up_voted? voteable
