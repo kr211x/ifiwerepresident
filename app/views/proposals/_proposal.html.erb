@@ -5,8 +5,9 @@
 
   <tr class="post">
     <% if voting %>
-      <td>
-        <%= render :partial => 'votes/vote', :locals => {:voteable => prop} %>
+      <td class="voting">
+        <%= render :partial => 'votes/js_counter' %>
+        <%-# render :partial => 'votes/vote', :locals => {:voteable => prop} %>
       </td>
     <% end %>
     

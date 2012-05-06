@@ -14,3 +14,30 @@
   
   .dead-links { color: #aaa; }
 }
+.thumbs-wrapper {
+  float:left;
+  margin-right:20px;
+}
+.vote-counter {
+  text-align:center;
+  margin-bottom:10px;
+  font-size:1.5em;
+  color:#333;
+}
+.vote-button {
+  width:48px;
+  height:48px;
+  overflow:hidden;
+  display:block;
+  margin-bottom:10px;
+}
+.vote-button:hover {
+  background-position: 0px -48px;
+}
+.thumbs-down {
+  margin-top:20px;
+  background-image:image-url('thumbs_down.png');
+}
+.thumbs-up {
+  background-image:image-url('thumbs_up.png');
+}

@@ -1,6 +1,9 @@
 <div class="row">
+  <h1 class="title"><%= @issue.title %></h1>
+  <h3 class="description"><%= @issue.description %></h3>
+  
   <div class="span9">
-
+    
     <%= link_to 'New proposal', new_proposal_path, :class => "btn btn-primary leading" %>
     <%= form_tag proposals_path, :method => :get, :class => 'form-inline pull-right' do %>
       <%= text_field_tag :search, params[:search] %>
