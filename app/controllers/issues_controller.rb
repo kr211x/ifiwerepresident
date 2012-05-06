@@ -21,6 +21,7 @@ class IssuesController < ApplicationController
 
   def show
     @issue = Issue.find(params[:id])
+    redirect_to proposals_url @issue
   end
 
   def destroy
