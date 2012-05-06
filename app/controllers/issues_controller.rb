@@ -10,6 +10,7 @@ class IssuesController < ApplicationController
   end
 
   def create
+    debugger
     @issue = Issue.new(params[:issue])
     if @issue.save
       @issue.add_owner(current_user)
@@ -18,7 +19,7 @@ class IssuesController < ApplicationController
       render :new
     end
   end
-  
+
   def edit
     @issue = Issue.find(params[:id])
     if @issue.save
