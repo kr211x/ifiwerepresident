@@ -1,5 +1,13 @@
+<ul class="breadcrumb" style="margin-top:-18px;">
+      <li>
+        <%= link_to 'Issues', issues_path %> <span class="divider">/</span>
+      </li>
+      <li>
+        <%= link_to @issue.title, issue_path(@issue) %> <span class="divider">/</span>
+      </li>
+    </ul>
 <div class="row">
-  <h1 class="title"><%= @issue.title %></h1>
+  <h1 class="title"><span style="color:grey">Issue: </span><%= @issue.title %></h1>
   <h3 class="description"><%= @issue.description %></h3>
   
   <div class="span9">
@@ -27,7 +35,9 @@
         <p>Please try a new search or <%= link_to 'go back', root_path %>.</p>
       </div>
     <% else %>
-
+    
+   <h1>Proposals</h1>
+   
     <% if params[:search].present? %>
       <table class="table table-striped">
         <%= render @proposals.results %>

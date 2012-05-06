@@ -1,14 +1,27 @@
-<div class="proposal" %>
-  <% if @proposal.url.present? %>
-    <h2><%= link_to @proposal.title, @proposal.url, :rel => 'nofollow'%></h2>
-  <% else %>
-    <h1 class="title"><%= @proposal.title %></h1>
-    <h3 class="description"><%= @proposal.description %></h3>
-  <% end %>
-
+<ul class="breadcrumb" style="margin-top:-18px;">
+      <li>
+        <%= link_to 'Issues', issues_path %> <span class="divider">/</span>
+      </li>
+      <li>
+        <%= link_to @issue.title, issue_path(@issue) %> <span class="divider">/</span>
+      </li>
+      <li>
+        <%= link_to 'Proposals', proposals_path(@issue, @proposal) %> <span class="divider">/</span>
+      </li>
+    </ul>
+  <div class="proposal" %>
+  <div class="issue span12" style="margin-bottom:20px;">
+    <h3><span style="color:grey">Issue:</span> <%= link_to @issue.title.titlecase, issue_path(@issue) %></h3>
+    
+  </div>
+  <div class="proposal span12">
+    <h2 class="title" style="color:grey">Proposal: </h2>
+    <h2 class="title" style="margin-bottom:30px;"><%= @proposal.title %></h2>
+    <p class="description"><%= @proposal.description %></p>
+  </div>
   <%- # render :partial => 'shared/byline', :locals => {:comment_or_proposal => @proposal, :voting => true, :show_tags => true} %>
   <%= @proposal.html.html_safe if @proposal.html.present? %>
-  <p>
+  <p class="span9">
     <% if can? :edit, @proposal %>
       <%= link_to 'edit', edit_proposal_path(@proposal) %>
     <% end %>

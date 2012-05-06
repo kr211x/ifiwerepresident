@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= title %></title>
+  <title>If I Were President...</title>
   <meta name="Description" content="<%= meta_description %>">
   <link rel="shortcut icon" href="/favicon.ico" />
   <%= stylesheet_link_tag "application" %>
@@ -29,13 +29,13 @@
           <span class="icon-bar"></span>
         </a>
 
-        <%= link_to 'IfIWerePresident', root_path, :class => "brand" %>
+        <%= link_to image_tag('banner-logo.png'), root_path, :class => "brand" %>
 
         <div class="nav-collapse">
             <ul class="nav">
             </ul>
 
-          <ul class="nav pull-right">
+          <ul class="nav pull-right" style="margin-top:10px;">
             <% if signed_in? %>
                 <li class="dropdown" data-dropdown="dropdown">
                   <%= link_to "#{current_user.name} <b class='caret'></b>".html_safe, '#', :class => "dropdown-toggle", :'data-toggle' => 'dropdown' %>
@@ -63,7 +63,6 @@
   <%= render 'shared/flashy' %>
 
   <div class="container">
-    <div id="header"><%= image_tag('banner.png') %></div>
     <% if @sidebar %>
 
       <div class="row">

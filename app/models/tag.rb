@@ -4,14 +4,14 @@ class Tag
   include ActsAsList::Mongoid
   
   field :name, type: String
-  field :posts_count, type: Integer, default: 0
+  #field :posts_count, type: Integer, default: 0
   
-  belongs_to :forum, index: true
+  belongs_to :issue, index: true
   
-  acts_as_list :scope => :forum_id
+  acts_as_list :scope => :issue_id
   
-  attr_protected :forum_id
+  attr_protected :issue_id
   
   validates_presence_of :name
-  validates_uniqueness_of :name, :scope => :forum_id, :case_sensitive => false
+  validates_uniqueness_of :name, :scope => :issue_id, :case_sensitive => false
 end

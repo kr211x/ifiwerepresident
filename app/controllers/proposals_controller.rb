@@ -24,7 +24,7 @@ class ProposalsController < ApplicationController
     if params[:search].present?
       @proposals = Proposal.solr_search do
         keywords params[:search]
-        with :issue_id, current_issue.id
+        with :issue_id, @issue.id.to_s
         paginate :page => params[:page]
       end
     else
