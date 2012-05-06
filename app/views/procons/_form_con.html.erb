@@ -1,6 +1,6 @@
 <% reply_procon ||= false %>
 
-<%= form_for @procon, :url => proposal_procons_path(@issue, @proposal), :remote => reply_procon, :html => {:class => "procon-form", :id => 'addcon-form', :style => 'display:none;'  } do |f| %>
+<%= form_for @procon, :url => proposal_procons_path(@issue, @proposal), :remote => reply_procon, :html => {:class => "procon-form", :id => 'addcon-form'  } do |f| %>
   <%= f.hidden_field :parent_id %>
   <%= f.hidden_field :yepnope, :value => false %>
 
