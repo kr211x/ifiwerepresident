@@ -1,8 +1,11 @@
 <div class="hero-unit home">
   <div class="row">
-    <div class="span7">
-      <h1>Create policies to change the world</h1>
+    <div class="span12">
+      <h1 style="font-size:76px; margin-bottom:20px;">Crowdsourcing Legislation</h1>
+      <h2>Creating policies to change the world.</h1>
     </div>
+    
+   
 
     <div class="span3">
       <%= form_for @user, :url => create_with_issue_users_path, :html => {:class => "form-stacked"} do |f| %>
@@ -21,4 +24,13 @@
       <% end %>
     </div>
   </div>
+</div>
+
+<div class="featured-issues" class="span10" style="margin-bottom:50px;">
+  <h1>Featured Issues</h1>
+  <% @issues = Issue.all.to_a %>
+  <% @issues.each do |issue| %>
+    <h2><%= link_to issue.title, issue_path(issue) %></h2>
+    <h3><%= issue.description %></h3>
+  <% end %>
 </div>

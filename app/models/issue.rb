@@ -24,7 +24,7 @@ class Issue
   belongs_to :theme
   belongs_to :user, index: true
   
-  before_save :add_owner
+  #before_save :add_owner
 
 
   def add_member user
@@ -36,11 +36,11 @@ class Issue
   end
 
   def add_admin user
-    participations.create!(:user => current_user, :level => Participation::ADMIN)
+    participations.create!(:user => Authenication.current_user, :level => Participation::ADMIN)
   end
 
   def add_owner
-    participations.create!(:user => current_user, :level => Participation::OWNER)
+    participations.create!(:user => Authentication.current_user, :level => Participation::OWNER)
   end
 
 end

@@ -18,6 +18,15 @@ class IssuesController < ApplicationController
       render :new
     end
   end
+  
+  def edit
+    @issue = Issue.find(params[:id])
+    if @issue.save
+      redirect_to issues_path, :notice => "Issue revised!"
+    else
+      render :edit
+    end
+  end
 
   def show
     @issue = Issue.find(params[:id])
