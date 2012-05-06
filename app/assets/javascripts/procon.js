@@ -1,0 +1,10 @@
+$(document).ready(function(){
+	$('#addpro-trigger').click(function(e){
+		e.preventDefault();
+		$('#addpro-form').show();
+	});
+	$('#addcon-trigger').click(function(e){
+		e.preventDefault();
+		$('#addcon-form').show();
+	});
+});

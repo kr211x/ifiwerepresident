@@ -21,23 +21,27 @@
 
 <div class="row">
 
-  <%= render "procons/form" %>
+  
   <div class="span6"> 
-    <h2>Pros</h2>   
+    <h2>Pros</h2> 
+    <a href="#" style="font-size:3em;" id="addpro-trigger">+</a>
+    <%= render :partial => 'procons/form_pro' %>  
     <section id="pros">
       <%= render @pros %>
     </section>
   </div>
   
   <div class="span6">
-    <h2>Cons</h2>  
+    <h2>Cons</h2>
+    <a href="#" style="font-size:3em;" id="addcon-trigger">-</a>
+    <%= render :partial => 'procons/form_con' %>   
     <section id="cons">
       <%= render @cons %>
     </section>
   </div>
   
     <div id="reply_comment" style="display: none;">
-      <%= render :partial => "procons/form", :locals => {:reply_comment => true} %>
+      <%- # render :partial => "procons/form", :locals => {:reply_comment => true} %>
     </div>
 
   </div>
