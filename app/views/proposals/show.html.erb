@@ -20,15 +20,25 @@
 <hr/>
 
 <div class="row">
+
+  <%= render "procons/form" %>
+  <div class="span6"> 
+    <h2>Pros</h2>   
+    <section id="pros">
+      <%= render @pros %>
+    </section>
+  </div>
+  
   <div class="span6">
-    <%= render "comments/form" %>
-
-    <%= render @comments %>
-
+    <h2>Cons</h2>  
+    <section id="cons">
+      <%= render @cons %>
+    </section>
+  </div>
+  
     <div id="reply_comment" style="display: none;">
-      <%= render :partial => "comments/form", :locals => {:reply_comment => true} %>
+      <%= render :partial => "procons/form", :locals => {:reply_comment => true} %>
     </div>
-
 
   </div>
   <div class="span6">

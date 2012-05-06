@@ -13,7 +13,8 @@ class Proposal
   field :text, type: String
   field :html, type: String
   field :ranking, type: Float, default: 0.0
-  field :comment_count, type: Integer, default: 0
+  field :pro_count, type: Integer, default: 0
+  field :con_count, type: Integer, default: 0
   field :description, type: String
   
   index :ranking
@@ -21,7 +22,7 @@ class Proposal
 
   belongs_to :user, index: true
   belongs_to :issue, index: true
-  has_many :comments, dependent: :destroy
+  has_many :procons, dependent: :destroy
   has_and_belongs_to_many :tags, inverse_of: nil, index: true
 
   validates_presence_of :description, :title
@@ -37,8 +38,8 @@ class Proposal
     text :title, :boost => 2.0, :stored => true
     text :url, :stored => true
     text :text, :stored => true
-    text :comments_texts do
-      comments.collect {|c| c.text }
+    text :procons_texts do
+      procons.collect {|c| c.text }
     end
     string :issue_id, :references => Issue
     string :tag_ids, :multiple => true

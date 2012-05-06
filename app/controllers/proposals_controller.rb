@@ -43,8 +43,9 @@ class ProposalsController < ApplicationController
   def show
     @issue = Issue.find(params[:issue_id])
     @proposal = Proposal.find(params[:id])
-    @comments = @proposal.comments
-    @comment = Comment.new(params[:comment])
+    @cons = @proposal.procons.where(:yepnope => false)
+    @pros = @proposal.procons.where(:yepnope => true)
+    @procon = Procon.new(params[:procon])
     if @proposal.nil?
       redirect_to root_path, :notice => "That proposal is no longer available."
       return
