@@ -47,22 +47,23 @@
                     <li><%= link_to "Sign Out", signout_path, :method => :delete %></li>
                   </ul>
                 </li>
-                <li class="<%= 'active' if controller_name == 'issues' %>"><%= link_to "My Issues", issues_path %></li>
+                <li class="<%= 'active' if controller_name == 'issues' %>"><%= link_to "Issues", issues_path %></li>
                 <li><%= link_to "Sign Out", signout_path, :method => :delete %></li>
             <% else %>
               <li class="<%= "active" if signin_active? %>"><%= link_to "Sign In or Sign Up", signin_path %></li>
 
             <% end %>
           </ul>
-
+          
         </div>
       </div>
     </div>
   </div>
-
+  
   <%= render 'shared/flashy' %>
 
   <div class="container">
+    <div id="header"><%= image_tag('banner.png') %></div>
     <% if @sidebar %>
 
       <div class="row">

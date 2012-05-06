@@ -1,0 +1,25 @@
+<%= form_for @issue, :url => @issue.new_record? ? issues_path : issue_path(@issue), :html => {:class => "form-stacked"} do |f| %>
+  <p><h2>Create A Issue</h2></p>
+  <% if @issue.errors.any? %>
+    <div class="error_messages">
+      <ul>
+        <% for message in @issue.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>Note: names can be changed later or used on a custom domain</p>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title, :class => "span8" %>
+    <%= f.label :description %>
+    <%= f.text_area :description, :class => "span8" %>
+  </p>
+
+
+  <fieldset>
+    <%= submit_tag "Create Issue", :class => "btn btn-primary btn-large", :disable_with => "Creating..." %>
+  </fieldset>
+<% end %>
