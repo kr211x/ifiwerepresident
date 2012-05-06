@@ -23,7 +23,6 @@ class Issue
   has_many :pages
   belongs_to :theme
   belongs_to :user, index: true
-  before_save :add_admin, :add_owner
 
   def add_member user
     if p = participations.where(:user_id => user.id).first
@@ -34,16 +33,11 @@ class Issue
   end
 
   def add_admin user
-    participations.create!(:user => Authenication.current_user, :level => Participation::ADMIN)
+    participations.create!(:user => user, :level => Participation::ADMIN)
   end
 
-<<<<<<< HEAD
   def add_owner user
-    participations.create!(:user => current_user, :level => Participation::OWNER)
-=======
-  def add_owner
-    participations.create!(:user => Authentication.current_user, :level => Participation::OWNER)
->>>>>>> a36512c... styling the site
+    participations.create!(:user => user, :level => Participation::OWNER)
   end
 
 end
