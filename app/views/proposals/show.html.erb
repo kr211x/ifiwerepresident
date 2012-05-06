@@ -2,7 +2,8 @@
   <% if @proposal.url.present? %>
     <h2><%= link_to @proposal.title, @proposal.url, :rel => 'nofollow'%></h2>
   <% else %>
-    <h2><%= @proposal.title %></h2>
+    <h1 class="title"><%= @proposal.title %></h1>
+    <h3 class="description"><%= @proposal.description %></h3>
   <% end %>
 
   <%- # render :partial => 'shared/byline', :locals => {:comment_or_proposal => @proposal, :voting => true, :show_tags => true} %>
