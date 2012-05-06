@@ -12,7 +12,7 @@ class IssuesController < ApplicationController
   def create
     @issue = Issue.new(params[:issue])
     if @issue.save
-      @issue.add_owner(current_user)
+      #@issue.add_owner(current_user)
       redirect_to issues_path, :notice => "Issue created!"
     else
       render :new

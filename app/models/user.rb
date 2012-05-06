@@ -53,10 +53,6 @@ class User
     val.blank? ? "New User" : val
   end
 
-  def issues
-    issue.any_in(:_id => participations.collect{|p| p.issue_id})
-  end
-
   def member_of? issue
     Participation.exists?(:conditions => {:issue_id => @issue.id, :user_id => self.id})
   end
