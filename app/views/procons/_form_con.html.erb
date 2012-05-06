@@ -1,14 +1,14 @@
 <% reply_procon ||= false %>
 
-<%= form_for @procon, :url => proposal_procons_path(@issue, @proposal), :remote => reply_procon, :html => {:class => "procon-form"} do |f| %>
+<%= form_for @procon, :url => proposal_procons_path(@issue, @proposal), :remote => reply_procon, :html => {:class => "procon-form", :id => 'addcon-form'  } do |f| %>
   <%= f.hidden_field :parent_id %>
+  <%= f.hidden_field :yepnope, :value => false %>
 
   <%= render 'shared/error_messages', :target => @proposal %>
   <%= render 'shared/error_messages', :target => @procon %>
 
   <p><%= f.text_area :text, :class => "span6", :rows => '10' %></p>
   <p>
-    <%= f.select(:yepnope, [['Pro', true], ['Con', false]]) %>
     
   </p>
   <p>
