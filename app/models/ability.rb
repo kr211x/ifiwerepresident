@@ -20,15 +20,15 @@ class Ability
     end
     
     can :manage, User, :_id => user.id
-    can :manage, [Comment, Participation, Proposal, Theme], :user_id => user.id
+    can :manage, [Procon, Participation, Proposal, Theme], :user_id => user.id
     can [:show, :install, :uninstall], Theme, :public => true
     
     # Admin actions
-    can :destroy, Comment do |c|
-      user.admin_of?(c.forum)
+    can :destroy, Procon do |c|
+      user.admin_of?(c.issue)
     end
     can :manage, Participation do |p|
-      user.admin_of?(p.forum)
+      user.admin_of?(p.issue)
     end
     
     
