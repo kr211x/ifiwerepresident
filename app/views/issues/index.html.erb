@@ -16,7 +16,7 @@
           <% if p.level == Participation::MEMBER %>
             <%= link_to "Hide", hide_participation_path(p), :method => :put, :class => 'btn' %>
           <% end %>
-          <%= link_to "Edit", account_settings_url, :class => 'btn' if can?(:edit, f) %>
+          <%= link_to "Edit", edit_issue_path(f), :class => 'btn' if can?(:edit, f) %>
         </td>
       </tr>
     <% end %>

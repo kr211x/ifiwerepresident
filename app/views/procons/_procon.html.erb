@@ -12,6 +12,7 @@
     <% if procon.deleted %>
       <p><small>[deleted]</small></p>
     <% else %>
+      <%= render :partial => 'votes/js_counter' %>
       <%= procon.html.html_safe %>
   
       <% if show_links %>
