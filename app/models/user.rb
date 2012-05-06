@@ -25,7 +25,6 @@ class User
 
   has_many :participations
   has_many :issues
-  has_many :comments
   has_many :themes
 
   has_secure_password
@@ -51,6 +50,10 @@ class User
   def name
     val = self.read_attribute(:name)
     val.blank? ? "New User" : val
+  end
+
+  def issues
+    Issue.any_in(:_id => participations.collect{|p| p.issue_id})
   end
 
   def member_of? issue
