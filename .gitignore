@@ -1,3 +1,4 @@
+# Ignore rails stuff
 *.rbc
 *.sassc
 .sass-cache
@@ -14,18 +15,30 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
+
+# Ignore solr stuff
 /solr/data
 /solr/pids
 
-# OS or Editor folders
+# Ignore emacs stuff
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.\#*
+.org-id-locations
+*_archive
+
+# Ignore MacOS X stuff
 .DS_Store
 ._*
-Thumbs.db
-.cache
-.project
-.settings
-.tmproj
-*.esproj
-nbproject
-*.sublime-project
-*.sublime-workspace
+.Spotlight-V100
+.Trashes
+
+# Ignore textmate stuff
+*.tmproj
+*.tmproject
+tmtags
